@@ -1,4 +1,4 @@
 ---
 is_hidden: true
 ---
-Nothing to see here yet.
+Welcome to my blog!
