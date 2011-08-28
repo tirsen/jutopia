@@ -1,17 +1,19 @@
 ---
 is_hidden: true
 ---
-Welcome to my blog!
+Welcome to Jutopia - the personal homepage of Jon Tirs&eacute;n.
 
+<div id="tweets"></div>
 <script src="http://widgets.twimg.com/j/2/widget.js"></script>
 <script>
 new TWTR.Widget({
   version: 2,
+  id: 'tweets',
   type: 'profile',
-  rpp: 4,
+  rpp: 6,
   interval: 6000,
   width: 'auto',
-  height: 300,
+  height: 200,
   theme: {
     shell: {
       background: '#ffffff',
