@@ -3,7 +3,7 @@ created_at: 2011-06-02
 excerpt: I don't think there's a new tech bubble (yet).
 kind: article
 publish: true
-tags: [misc]
+tags: []
 title: "Not a bubble"
 ---
 
