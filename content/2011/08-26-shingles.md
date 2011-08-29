@@ -2,7 +2,7 @@
 created_at: 2011-08-26
 excerpt: 
 kind: article
-publish: false
+publish: true
 tags: [machinelearning, triposo, python]
 title: "Shingles"
 excerpt: "What does roof laying and machine learning have in common?"
@@ -59,7 +59,9 @@ lookup('athena')
 
 The highest scored cuisine is our best guess but the bigger difference it is to the second score the higher confidence we have.
 
-Should we use this in our guides? I'm not entirely convinced, for high confidence guesses we are usually correct but a human is also very good at guessing the cuisine. That said, it's a nice little example of the type of processing we do in our pipeline.
+The neat thing with this technique is not only that it grows linearly with the size of the learning set and with the size of the inputs. It's also really easy to parallelize. This is why it's so popular when you're working at "web scale".
+
+So, should we use this in our guides? I'm not entirely convinced, for high confidence guesses we are usually correct but a human is also very good at guessing the cuisine. That said, it provided a nice little example of the type of processing we do in our pipeline.
 
 [1]: http://www.triposo.com
 [2]: http://docs.python.org/dev/library/collections.html#collections.Counter
