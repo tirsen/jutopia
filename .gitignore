@@ -7,3 +7,5 @@ tmp/*
 output.diff
 Gemfile.lock
 .sass-cache
+*.iml
+/.idea
