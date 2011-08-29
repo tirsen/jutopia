@@ -12,6 +12,7 @@ excerpt: "What does roof laying and machine learning have in common?"
 At [Triposo][1] we have a database of restaurants that we've collected from various open content sources. When we display this list in our mobile travel guides one of the key pieces of information for our users is what cuisine the restaurant has. We often have this available but not all the time.
 
 ![List of restaurants with cuisines](/assets/images/cuisine-list.png)
+<div class="caption">Screenshot from one of our <a href="http://www.triposo.com/android/">Android travel guides</a></div>
 
 Sometimes you can guess the cuisine just by looking at the name:
 
@@ -22,6 +23,7 @@ Sometimes you can guess the cuisine just by looking at the name:
 A useful technique you will run into very quickly as soon as you start working with machine learning is what is popularly known as *shingles*. (Referring to [roof shingles][3] not the disease.)
 
 ![Roof shingles](/assets/images/roof-shingles.jpg "Roof shingles - photo by hasdrupal2000 on Flickr")
+<div class="caption">Roof shingles</div>
 
 Shingles in machine learning is the set of overlapping character n-grams produced from a string of characters. It's common to add a start and end indicator to the strings so that characters at the start and end are treated specially. Hopefully this diagram explains how to produce the shingles from a string.
 
