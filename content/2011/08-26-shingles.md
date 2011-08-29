@@ -25,7 +25,7 @@ A useful technique you will run into very quickly as soon as you start working w
 ![Roof shingles](/assets/images/roof-shingles.jpg "Roof shingles - photo by hasdrupal2000 on Flickr")
 <div class="caption">Roof shingles</div>
 
-Shingles in machine learning is the set of overlapping character n-grams produced from a string of characters. It's common to add a start and end indicator to the strings so that characters at the start and end are treated specially. Hopefully this diagram explains how to produce the shingles from a string.
+Shingles in machine learning is the set of overlapping character n-grams produced from a string of characters. It's common to add a start and end indicator to the string so that characters at the start and end are treated specially. Hopefully this diagram explains how to produce the shingles from a string.
 
 ![4-gram shingles](/assets/images/4gram-shingles.png)
 
