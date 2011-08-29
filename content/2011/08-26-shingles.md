@@ -29,7 +29,7 @@ Shingles in machine learning is the set of overlapping character n-grams produce
 
 ![4-gram shingles](/assets/images/4gram-shingles.png)
 
-Shingles are easily generated with a one-liner Python list comprehension (n is the size of each n-gram, n=4 often works well):
+Shingles are easily generated with a one-liner Python list comprehension (n is the size of each n-gram, <code>n=4</code> often works well):
 
 <pre class="brush: py">[word[i:i + n] for i in range(len(word) - n + 1)]
 </pre>
