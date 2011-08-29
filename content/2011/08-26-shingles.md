@@ -23,7 +23,7 @@ A useful technique you will run into very quickly as soon as you start working w
 
 ![Roof shingles](/assets/images/roof-shingles.jpg "Roof shingles - photo by hasdrupal2000 on Flickr")
 
-Shingles in machine learning is the set of overlapping character n-grams produced from a phrase. It's common to add a start and end indicator to the phrase so that characters at the start and end of a phrase gets treated specially. Hopefully this diagram explains how to produce them.
+Shingles in machine learning is the set of overlapping character n-grams produced from a string of characters. It's common to add a start and end indicator to the strings so that characters at the start and end are treated specially. Hopefully this diagram explains how to produce the shingles from a string.
 
 ![4-gram shingles](/assets/images/4gram-shingles.png)
 
@@ -59,7 +59,7 @@ lookup('athena')
 
 The highest scored cuisine is our best guess but the bigger difference it is to the second score the higher confidence we have.
 
-The neat thing with this technique is not only that it grows linearly with the size of the learning set and with the size of the inputs. It's also really easy to parallelize. This is why it's so popular when you're working at "web scale".
+The neat thing with this technique is not only that it grows linearly with the size of the learning set and the size of the inputs. It's also really easy to parallelize. This is why it's so popular when you're working at "web scale".
 
 So, should we use this in our guides? I'm not entirely convinced, for high confidence guesses we are usually correct but a human is also very good at guessing the cuisine. That said, it provided a nice little example of the type of processing we do in our pipeline.
 
