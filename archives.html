@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Archives</title>
+    <meta content='text/html; charset=utf-8' http-equiv='Content-Type'>
+    <meta content=', ' name='keywords'>
+    <meta content='' name='description'>
+    <link href='http://feeds.feedburner.com/jutopia' rel='alternate' type='appliation/atom+xml'>
+    <link href='/assets/css/reset.css' rel='stylesheet' type='text/css'>
+    <link href='/assets/css/style.css' media='screen' rel='stylesheet' type='text/css'>
+    <link href='/assets/css/twitter.css' media='screen' rel='stylesheet' type='text/css'>
+    <link href='http://alexgorbatchev.com/pub/sh/current/styles/shCore.css' media='screen' rel='stylesheet' type='text/css'>
+    <link href='http://alexgorbatchev.com/pub/sh/current/styles/shThemeDefault.css' media='screen' rel='stylesheet' type='text/css'>
+    <script src='http://alexgorbatchev.com/pub/sh/current/scripts/shCore.js' type='text/javascript'></script>
+    <script src='http://alexgorbatchev.com/pub/sh/current/scripts/shBrushPython.js' type='text/javascript'></script>
+  </head>
+  <body>
+    <div id='main'>
+      <div id='header'>
+        <div class='logo'>
+          <a href='/'>&laquo; jutopia</a>
+        </div>
+        <div id='nav'>
+          <ul>
+            <li><a href='/about.html'>about</a></li>
+            
+            <li><a href='/tags.html'>tags</a></li>
+            <li>
+              <a href='/atom.xml'>rss</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class='clear'></div>
+      <h1>Archives</h1>
+      <div class='archives'>
+        <h2>2011 August</h2>
+        <ul>
+          <li>
+            <div class='excerpt'>
+              <h2>
+                <a class='permalink' href='/2011/08/26/shingles.html' title='Full article'>&laquo; Shingles</a>
+              </h2>
+              <div class='body'>
+                <p>
+                  What does roof laying and machine learning have in common?
+                </p>
+              </div>
+            </div>
+          </li>
+        </ul>
+        <h2>2011 June</h2>
+        <ul>
+          <li>
+            <div class='excerpt'>
+              <h2>
+                <a class='permalink' href='/2011/06/02/not_a_bubble.html' title='Full article'>&laquo; Not a bubble</a>
+              </h2>
+              <div class='body'>
+                <p>
+                  I don't think there's a new tech bubble (yet).
+                </p>
+              </div>
+            </div>
+          </li>
+        </ul>
+        <h2>2011 April</h2>
+        <ul>
+          <li>
+            <div class='excerpt'>
+              <h2>
+                <a class='permalink' href='/2011/04/29/leaving_google.html' title='Full article'>&laquo; Leaving Google</a>
+              </h2>
+              <div class='body'>
+                <p>
+                  Today is my last day at Google.
+                </p>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div class='clear'></div>
+    </div>
+    <script>
+      (function() {
+        var links = document.getElementsByTagName('a');
+        var query = '?';
+        for(var i = 0; i < links.length; i++) {
+          if(links[i].href.indexOf('#disqus_thread') >= 0) {
+            query += 'url' + i + '=' + encodeURIComponent(links[i].href) + '&';
+          }
+        }
+        document.write('<script charset="utf-8" type="text/javascript" src="http://disqus.com/forums/jutopia/get_num_replies.js' + query + '"></' + 'script>');
+      })();
+    </script>
+    <script>
+      var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+      document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+    <script>
+      try {
+        var pageTracker = _gat._getTracker("UA-95228-1");
+        pageTracker._setDomainName(".jutopia.tirsen.com");
+        pageTracker._setAllowHash(false);
+        pageTracker._trackPageview();
+      } catch(err) {}
+    </script>
+    <script type='text/javascript'>
+      SyntaxHighlighter.all()
+    </script>
+  </body>
+</html>

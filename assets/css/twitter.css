@@ -1,0 +1,12 @@
+#tweets {
+  width: 400px;
+  margin: 0 auto; }
+  #tweets .twtr-widget, #tweets .twtr-doc {
+    width: 100%;
+    height: auto; }
+  #tweets .twtr-hd {
+    display: none; }
+  #tweets .twtr-tweet-wrap {
+    margin: 0; }
+  #tweets .twtr-ft img {
+    display: none; }

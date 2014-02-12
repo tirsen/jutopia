@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>mgutz.com Syndication</title>
+    <meta content='text/html; charset=utf-8' http-equiv='Content-Type'>
+    <meta content=', ' name='keywords'>
+    <meta content='' name='description'>
+    <link href='http://feeds.feedburner.com/jutopia' rel='alternate' type='appliation/atom+xml'>
+    <link href='/assets/css/reset.css' rel='stylesheet' type='text/css'>
+    <link href='/assets/css/style.css' media='screen' rel='stylesheet' type='text/css'>
+    <link href='/assets/css/twitter.css' media='screen' rel='stylesheet' type='text/css'>
+    <link href='http://alexgorbatchev.com/pub/sh/current/styles/shCore.css' media='screen' rel='stylesheet' type='text/css'>
+    <link href='http://alexgorbatchev.com/pub/sh/current/styles/shThemeDefault.css' media='screen' rel='stylesheet' type='text/css'>
+    <script src='http://alexgorbatchev.com/pub/sh/current/scripts/shCore.js' type='text/javascript'></script>
+    <script src='http://alexgorbatchev.com/pub/sh/current/scripts/shBrushPython.js' type='text/javascript'></script>
+  </head>
+  <body>
+    <div id='main'>
+      <div id='header'>
+        <div class='logo'>
+          <a href='/'>&laquo; jutopia</a>
+        </div>
+        <div id='nav'>
+          <ul>
+            <li><a href='/about.html'>about</a></li>
+            <li><a href='/archives.html'>archives</a></li>
+            <li><a href='/tags.html'>tags</a></li>
+            <li>
+              <a href='/atom.xml'>rss</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class='clear'></div>
+      <?xml version="1.0" encoding="UTF-8"?>
+      <feed xmlns="http://www.w3.org/2005/Atom">
+        <id>http://jutopia.tirsen.com/</id>
+        <title>mgutz.com Syndication</title>
+        <updated>2011-08-25T22:00:00Z</updated>
+        <link rel="alternate" href="http://jutopia.tirsen.com/"/>
+        <link rel="self" href="http://jutopia.tirsen.com/atom.xml"/>
+        <author>
+          <name>Mario Gutierrez</name>
+          <uri>http://mgutz.com</uri>
+        </author>
+        <entry>
+          <id>tag:jutopia.tirsen.com,2011-08-26:/2011/08/26/shingles.html</id>
+          <title type="html">Shingles</title>
+          <published>2011-08-25T22:00:00Z</published>
+          <updated>2014-02-12T19:38:46Z</updated>
+          <link rel="alternate" href="http://jutopia.tirsen.com/2011/08/26/shingles.html"/>
+          <content type="html">&lt;p&gt;At &lt;a href="http://www.triposo.com"&gt;Triposo&lt;/a&gt; we have a database of restaurants that we've collected from various open content sources. When we display this list in our mobile travel guides one of the key pieces of information for our users is what cuisine the restaurant has. We often have this available but not all the time.&lt;/p&gt;
+      
+      &lt;p&gt;&lt;img src="/assets/images/cuisine-list.png" alt="List of restaurants with cuisines" /&gt;&lt;/p&gt;
+      
+      &lt;div class="caption"&gt;Screenshot from one of our &lt;a href="http://www.triposo.com/android/"&gt;Android travel guides&lt;/a&gt;&lt;/div&gt;
+      
+      
+      &lt;p&gt;Sometimes you can guess the cuisine just by looking at the name:&lt;/p&gt;
+      
+      &lt;ul&gt;
+      &lt;li&gt;"Sea Palace" - probably chinese.&lt;/li&gt;
+      &lt;li&gt;"Bavarian Biercafe" - probably german.&lt;/li&gt;
+      &lt;li&gt;"Athena" - probably greek.&lt;/li&gt;
+      &lt;/ul&gt;
+      
+      
+      &lt;p&gt;A useful technique you will run into very quickly as soon as you start working with machine learning is what is popularly known as &lt;em&gt;shingles&lt;/em&gt;. (Referring to &lt;a href="http://en.wikipedia.org/wiki/Roof_shingle"&gt;roof shingles&lt;/a&gt; not the disease.)&lt;/p&gt;
+      
+      &lt;p&gt;&lt;img src="/assets/images/roof-shingles.jpg" title="Roof shingles - photo by hasdrupal2000 on Flickr" alt="Roof shingles" /&gt;&lt;/p&gt;
+      
+      &lt;div class="caption"&gt;Roof shingles&lt;/div&gt;
+      
+      
+      &lt;p&gt;Shingles in machine learning is the set of overlapping character n-grams produced from a string of characters. It's common to add a start and end indicator to the string so that characters at the start and end are treated specially. Hopefully this diagram explains how to produce the shingles from a string.&lt;/p&gt;
+      
+      &lt;p&gt;&lt;img src="/assets/images/4gram-shingles.png" alt="4-gram shingles" /&gt;&lt;/p&gt;
+      
+      &lt;p&gt;Shingles are easily generated with a one-liner Python list comprehension (n is the size of each n-gram, &lt;code&gt;n=4&lt;/code&gt; often works well):&lt;/p&gt;
+      
+      &lt;pre class="brush: py"&gt;[word[i:i + n] for i in range(len(word) - n + 1)]
+      &lt;/pre&gt;
+      
+      
+      &lt;p&gt;Shingles are great when you want to get a measure of how similar two strings of characters are. The more n-grams that are shared, the more similar the strings are. Since you can use hashing to look up instead of slightly more expensive trees this is an important tool when you're working with really large quantities of data. At Google &lt;code&gt;O(1)&lt;/code&gt; rules.&lt;/p&gt;
+      
+      &lt;p&gt;Let's use shingles to guess the cuisine of restaurants given its name.&lt;/p&gt;
+      
+      &lt;p&gt;First of all let's index all the restaurant names where we know the cuisine. We want to know how likely it is that a particular 4-gram has a particular cuisine.&lt;/p&gt;
+      
+      &lt;p&gt;We start with a hash map from 4-gram to observed cuisine probability (in Python &lt;a href="http://docs.python.org/dev/library/collections.html#collections.Counter"&gt;collections.Counter&lt;/a&gt; is just great for this). We iterate through all the restaurants and for every 4-gram shingle we bump up that cuisine in the corresponding probability distribution.&lt;/p&gt;
+      
+      &lt;p&gt;Right now we have an association to 4-gram to number of observations but we want to work with probabilities, number of observations is irrelevant. So let's also normalize each histogram. This prevents common restaurants like American and Chinese to score really highly for common n-grams. (This was a problem I initially had.)&lt;/p&gt;
+      
+      &lt;p&gt;So our model looks something like this:&lt;/p&gt;
+      
+      &lt;pre class="brush: py"&gt;'bier' =&gt; {'german': 0.37, 'currywurst': 0.06, ...}
+      '{ath' =&gt; {'greek': 0.68, 'american': 0.04, 'pizza': 0.04, ...}
+      ...
+      &lt;/pre&gt;
+      
+      
+      &lt;p&gt;Then to guess the cuisine of a restaurant name we produce the 4-gram shingles and then add together the probability distribution for the cuisines for each 4-gram.&lt;/p&gt;
+      
+      &lt;pre class="brush: py"&gt;lookup('bavarian biercafe')
+      [('german', 2.28), ('italian', 1.17), ('cafe coffee shop', 0.95)]
+      lookup('athena')
+      [('greek', 2.64), ('pizza', 0.37), ('italian', 0.36)]
+      &lt;/pre&gt;
+      
+      
+      &lt;p&gt;The highest scored cuisine is our best guess but the bigger difference it is to the second score the higher confidence we have.&lt;/p&gt;
+      
+      &lt;p&gt;The neat thing with this technique is not only that it grows linearly with the size of the learning set and the size of the inputs. It's also really easy to parallelize. This is why it's so popular when you're working at "web scale".&lt;/p&gt;
+      
+      &lt;p&gt;So, should we use this in our guides? I'm not entirely convinced, for high confidence guesses we are usually correct but a human is also very good at guessing the cuisine. That said, it provided a nice little example of the type of processing we do in our pipeline.&lt;/p&gt;
+      </content>
+          <summary type="html">What does roof laying and machine learning have in common?</summary>
+        </entry>
+        <entry>
+          <id>tag:jutopia.tirsen.com,2011-06-02:/2011/06/02/not_a_bubble.html</id>
+          <title type="html">Not a bubble</title>
+          <published>2011-06-01T22:00:00Z</published>
+          <updated>2011-06-02T06:55:55Z</updated>
+          <link rel="alternate" href="http://jutopia.tirsen.com/2011/06/02/not_a_bubble.html"/>
+          <content type="html">&lt;p&gt;I'll probably regret arguing against &lt;a href="http://www.economist.com/node/18681576" title="The new tech bubble"&gt;The Economist&lt;/a&gt; but I have to say I agree with &lt;a href="http://allthingsd.com/20110601/marc-andreessen-says-theres-no-bubble-but-hes-happy-if-you-think-there-is/?mod=socialflow" title="Marc Andreessen Says There’s No Bubble"&gt;Marc Andreessen here&lt;/a&gt;. There isn't a bubble as such, it's just a simple matter of economy 101: price is defined by supply and demand. There's a big demand for investing in the new "social media" technology companies but there's almost no supply. High demand + low supply = high price.&lt;/p&gt;
+      
+      &lt;p&gt;But don't get me wrong here: LinkedIn trading at several thousand times earning is still over-valued. Facebook is trading at several hundred times earnings but chances are still high they will "pop" at the IPO and probably increase in value several times. Does that mean I would invest my own money in these companies? Hell no, I'm coming in way too late. All the capital that wants to invest in this strong new technology trend needs to go somewhere and so far LinkedIn is the only stock it can go. At some point more companies will be going on the market and it will start getting easier to invest, supply is starting to meet demand and the valuations of these companies will start going down.&lt;/p&gt;
+      
+      &lt;p&gt;What about all these startups with crazy valuations? Same thing. There is no big company there to mop up all the surplus capital which means that early investment rounds is getting over subscribed. Start ups can ask for higher valuations and still get the capital they need.&lt;/p&gt;
+      
+      &lt;p&gt;I still don't think this is a bubble. A few over-valued companies is not enough to create a bubble in the same sense as the one in the late 90ies (I was there). These sort of bubbles have a very significant impact on the world economy. I doubt this will happen now.&lt;/p&gt;
+      
+      &lt;p&gt;In fact, I am investing myself. I left a &lt;em&gt;huge&lt;/em&gt; salary and a &lt;em&gt;lot&lt;/em&gt; of unvested shares on the table when I left Google to start &lt;a href="http://www.triposo.com" title="Triposo"&gt;Triposo&lt;/a&gt;. I have no salary and no idea whether it's going to work out.&lt;/p&gt;
+      
+      &lt;p&gt;Why invest? I think we are at a flexion point in this industry where a lot of interesting things will happen. It's not only about technological developments: what we're seeing now is mainstream adoption of things that's been around for quite some time. At Triposo we're primarily betting on powerful mobile devices and high quality open content. As technologies these things aren't exactly new but have significantly disrupted the industry by going mainstream (via the iPhone and Wikipedia).&lt;/p&gt;
+      </content>
+          <summary type="html">I don't think there's a new tech bubble (yet).</summary>
+        </entry>
+        <entry>
+          <id>tag:jutopia.tirsen.com,2011-04-29:/2011/04/29/leaving_google.html</id>
+          <title type="html">Leaving Google</title>
+          <published>2011-04-28T22:00:00Z</published>
+          <updated>2011-05-03T06:26:06Z</updated>
+          <link rel="alternate" href="http://jutopia.tirsen.com/2011/04/29/leaving_google.html"/>
+          <content type="html">&lt;p&gt;Today is my last day at Google.&lt;/p&gt;
+      
+      &lt;p&gt;I joined Google about 3 years ago and most of that time I worked as one of the tech leads of Google Wave. It was fun, exciting and slightly crazy. We went from being the most hyped product on the web to slightly ridiculed. Then we were cancelled...&lt;/p&gt;
+      
+      &lt;p&gt;After Wave I worked for a little while on the Maps API until my 20% project &lt;a href="http://sharedspaces.googlelabs.com"&gt;Shared Spaces&lt;/a&gt; took off and became my 100% project. It was fun for a little while but we've now transitioned it to another team.&lt;/p&gt;
+      
+      &lt;p&gt;Me and &lt;a href="http://blog.douweosinga.com/"&gt;Douwe&lt;/a&gt; had been playing around with this idea for a start up for a little while and we felt it was probably as good a time as any to have a go at it. Together with Douwe's two brothers we're starting &lt;a href="http://www.triposo.com"&gt;Triposo&lt;/a&gt;. We're building travel guides for mobile phones. We crawl open content on the web, merge, score and generally massage it in a pipeline (running on our rather beefy workstations under our desks at home currently) then publish it to iPad, iPhone and Android (Windows Phone 7 to come). Here is for example our Barcelona guide in the &lt;a href="http://itunes.apple.com/us/app/barcelona-travel-guide-by/id430531579?mt=8&amp;amp;ign-mpt=uo%3D4"&gt;App Store&lt;/a&gt; and in the &lt;a href="https://market.android.com/details?id=com.triposo.droidguide.barcelona"&gt;Market&lt;/a&gt;. They're not bad actually and we've barely started!&lt;/p&gt;
+      
+      &lt;p&gt;I'm also doing another start up. My son Samir was born last friday (he's a week old today!) so here's the mandatory new-parent gratuitous baby shot:&lt;/p&gt;
+      
+      &lt;p&gt;&lt;img src="https://lh4.googleusercontent.com/_JjS6dFAaFrw/TbohbP8tncI/AAAAAAAAB8A/E51maNnnRpE/s640/P1000330.JPG" alt="Samir" /&gt;&lt;/p&gt;
+      </content>
+          <summary type="html">Today is my last day at Google.</summary>
+        </entry>
+      </feed>
+      <div class='clear'></div>
+    </div>
+    <script>
+      (function() {
+        var links = document.getElementsByTagName('a');
+        var query = '?';
+        for(var i = 0; i < links.length; i++) {
+          if(links[i].href.indexOf('#disqus_thread') >= 0) {
+            query += 'url' + i + '=' + encodeURIComponent(links[i].href) + '&';
+          }
+        }
+        document.write('<script charset="utf-8" type="text/javascript" src="http://disqus.com/forums/jutopia/get_num_replies.js' + query + '"></' + 'script>');
+      })();
+    </script>
+    <script>
+      var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+      document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+    <script>
+      try {
+        var pageTracker = _gat._getTracker("UA-95228-1");
+        pageTracker._setDomainName(".jutopia.tirsen.com");
+        pageTracker._setAllowHash(false);
+        pageTracker._trackPageview();
+      } catch(err) {}
+    </script>
+    <script type='text/javascript'>
+      SyntaxHighlighter.all()
+    </script>
+  </body>
+</html>
